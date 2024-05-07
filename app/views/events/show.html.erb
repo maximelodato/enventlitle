@@ -1,0 +1,18 @@
+<div class="container">
+  <h1><%= @event.title %></h1>
+  <p><strong>Description:</strong> <%= @event.description %></p>
+  <p><strong>Date:</strong> <%= @event.start_date.strftime("%d/%m/%Y à %H:%M") %></p>
+  <p><strong>Durée:</strong> <%= @event.duration %> heures</p>
+  <p><strong>Prix:</strong> <%= number_to_currency(@event.price) %></p>
+
+  <%= form_with(model: @event, local: true, method: :delete) do |form| %>
+    <%= form.submit "Supprimer", class: "btn btn-danger", data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet événement ?' } %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <% unless current_user.registered_for?(@event) %>
+    <%= link_to 'Participer', participate_event_path(event_id: event.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+    <%= @event.registrations_count %>
+  <% end %>
+</div>

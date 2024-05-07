@@ -1,0 +1,38 @@
+<h1>Nouvel Événement</h1>
+
+<%= form_with(model: @event, local: true) do |form| %>
+  <% if current_user.present? %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, "Titre de l'événement" %>
+    <%= form.text_field :title, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description, "Description" %>
+    <%= form.text_area :description, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :start_date, "Date de début" %>
+    <%= form.datetime_local_field :start_date, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :duration, "Durée (en heures)" %>
+    <%= form.number_field :duration, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, "Prix" %>
+    <%= form.number_field :price, step: 0.01, class: 'form-control', required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Créer l'événement", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Retour à la liste des événements', events_path, class: 'btn btn-link' %>

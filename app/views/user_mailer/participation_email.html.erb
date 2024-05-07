@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Nouvelle participation à votre événement</h1>
+  <p>Bonjour <%= @event_creator.first_name %> <%= @event_creator.last_name %>,</p>
+  <p>Un nouvel utilisateur, <%= @attendance.user.first_name %> <%= @attendance.user.last_name %>, a participé à votre événement.</p>
+</body>
+</html>

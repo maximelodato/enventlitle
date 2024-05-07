@@ -1,0 +1,7 @@
+<%= render 'layouts/navbar' %>
+<h2>Mot de passe oublié ?</h2>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+  <%= f.submit "Envoyer instructions de réinitialisation" %>
+<% end %>
